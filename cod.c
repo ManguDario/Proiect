@@ -140,6 +140,37 @@ void inOrder(struct Node* root)
     }
 }
 
+void postOrder(struct Node* root) {
+    if (root != NULL) {
+        postOrder(root->left);
+        postOrder(root->right);
+        printf("%d ", root->key);
+    }
+}
+
+void levelOrder(struct Node* root) {
+    if (root == NULL) return;
+
+    struct Node** queue = (struct Node**)malloc(100 * sizeof(struct Node*)); 
+    int front = 0, rear = 0;
+
+    queue[rear++] = root;
+
+    while (front < rear) {
+        struct Node* current = queue[front++];
+
+        printf("%d ", current->key);
+
+        if (current->left != NULL) {
+            queue[rear++] = current->left;
+        }
+        if (current->right != NULL) {
+            queue[rear++] = current->right;
+        }
+    }
+
+    free(queue); 
+}
 int main()
 {
     struct Node* root = NULL;
@@ -156,6 +187,12 @@ int main()
     printf("\n");
     printf("Traversarea arborelui in in-ordine: \n");
     inOrder(root);
+    printf("\n");
+    printf("Traversarea arborelui in post-ordine: \n");
+    postOrder(root);
+    printf("\n");
+    printf("Traversarea arborelui in level-order: \n");
+    levelOrder(root);
     printf("\n");
     return 0;
 }
