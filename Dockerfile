@@ -1,5 +1,5 @@
 FROM gcc:latest
-WORKDIR /usr/src/myapp
-COPY myapp.cpp .
-RUN gcc -o myapp myapp.cpp -lstdc++
-CMD ["./myapp"]
+WORKDIR /usr/src/cod
+COPY cod.c .
+RUN gcc -o cod cod.c -lstdc++
+CMD ["./cod"]
